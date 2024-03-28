@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "dependencies": [
     "fmt",
-    "openssl"
+    "openssl",
+    "sqlite3"
   ]
 }
