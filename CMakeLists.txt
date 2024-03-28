@@ -49,7 +49,7 @@ file(GLOB_RECURSE
 
 add_executable(${PROJECT_NAME}
   ${project_sources}
-  "src/menu.cpp")
+  "src/menu.cpp" "src/database.cpp" "src/database_manager.cpp")
 
 include(compiler-warnings)
 
@@ -94,7 +94,8 @@ target_compile_options(${PROJECT_NAME} PRIVATE
 )
 
 target_include_directories(${PROJECT_NAME}
-  PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src"
+  PRIVATE 
+      "${CMAKE_CURRENT_SOURCE_DIR}/src"
 )
 
 target_link_libraries(${PROJECT_NAME}
