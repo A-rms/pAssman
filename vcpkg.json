@@ -6,6 +6,7 @@
   "dependencies": [
     "fmt",
     "openssl",
-    "sqlite3"
+    "sqlite3",
+    "sqlite-orm"
   ]
 }
