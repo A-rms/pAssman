@@ -1,25 +1,30 @@
 #include <include/database_manager.hpp>
 
 DatabaseManager::DatabaseManager() {
-    db = nullptr;
 }
 
 DatabaseManager::~DatabaseManager() {
-    delete db;
 }
 
 bool DatabaseManager::initializeDatabase(const char* dbPath) {
     if (db) {
-        // Database already exists.
+        std::cerr << "Error: Database already initialized.\n";
         return false;
     }
-    db = new Database(dbPath);
+    db = std::make_unique<Database>(dbPath);
     if (!db->connect()) {
-        // Handle connection error.
-        delete db;
-        db = nullptr;
+        std::cerr << "Error: Failed to connect to the database.\n";
+        db.reset();  // Reset the unique_ptr
         return false;
     }
-    // Perform additional init.
+    std::cout << "Connected to database.\n";
+    if (!db->createSchema()) {
+        std::cerr << "Failed to create schema!";
+        db.reset();
+        return false;
+    }
+    // Perform additional initialization if needed
+    // Create tables, setup index's, call schema creation.
     return true;
 }
+

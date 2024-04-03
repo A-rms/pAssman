@@ -39,6 +39,7 @@ set(compiler_is_clang "$<OR:$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:Clan
 find_package(fmt CONFIG REQUIRED)
 find_package(OpenSSL REQUIRED)
 find_package(unofficial-sqlite3 CONFIG REQUIRED)
+find_package(SqliteOrm CONFIG REQUIRED)
 
 file(GLOB_RECURSE
   project_sources
@@ -103,6 +104,7 @@ target_link_libraries(${PROJECT_NAME}
   PRIVATE OpenSSL::SSL
   PRIVATE OpenSSL::Crypto
   PRIVATE unofficial::sqlite3::sqlite3
+  PRIVATE sqlite_orm::sqlite_orm
 )
 
 if (AUTOFORMAT_SRC_ON_CONFIGURE MATCHES ON)
